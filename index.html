@@ -10,13 +10,17 @@
 		}
   </style>
 </head>
-  <body>
+  <body onload = "init()">
     <h1>マウスアクション</h1>
     <section>
 	     <h2>click</h2>
        <canvas id="e_click" width="500" height="250"></canvas>
     </section>
+    <pre style="width: 350px; max-height: 300px;">
+    <div id="message"></div>
+    </pre>
 
+    <button type = "button" onclick="show()">show</button>
 
     <script src="index.js"></script>
   </body>
