@@ -26,7 +26,7 @@ function pos(e) {
 
     region = judgeRegion(x,y);
 
-
+    draw();
 
     return [x, y, region];
 }
@@ -68,11 +68,15 @@ function showMessage(message) {
     document.getElementById("message").innerHTML = message;
 }
 
-function draw(x,y) {
+function draw() {
     ctx.clearRect(0, 0, w, h);
 
     drawRegion();
-    ctx.fillRect(x, y, 10, 10);
+
+    drawCorner(pos_lu[0], pos_lu[1]);
+    drawCorner(pos_ld[0], pos_ld[1]);
+    drawCorner(pos_ru[0], pos_ru[1]);
+    drawCorner(pos_rd[0], pos_rd[1]);
 }
 
 function drawRegion(){
@@ -100,8 +104,31 @@ function drawRegion(){
   ctx.stroke();
 }
 
-function show(){
-  alert('(' + pos_lu[0] + ',' + pos_lu[1] + ')');
+function drawCorner(x,y){
+  ctx.lineWidth = 3;
+  /* 円の描画 */
+  ctx.beginPath(); // パスの初期化
+  ctx.arc(x, y, 5, 0, 2 * Math.PI); // (100, 50)の位置に半径30pxの円
+  ctx.closePath(); // パスを閉じる
+  ctx.fill(); // 軌跡の範囲を塗りつぶす
+}
+
+//与えられた座標を出力
+function show(num){
+  switch (num) {
+    case 0:
+      alert('(' + pos_lu[0] + ',' + pos_lu[1] + ')');
+      break;
+    case 1:
+      alert('(' + pos_ru[0] + ',' + pos_ru[1] + ')');
+      break;
+    case 2:
+      alert('(' + pos_rd[0] + ',' + pos_rd[1] + ')');
+      break;
+    case 3:
+      alert('(' + pos_ld[0] + ',' + pos_ld[1] + ')');
+      break;
+  }
 }
 
 //canvasアクションの定義なんか
